@@ -7,28 +7,42 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      id: "",
-      title: "",
-      fecha: "",
-      preferencias: "",
-      createAt: "",
-      updatedAt: "",
+      form: {
+        id: "",
+        title: "",
+        fecha: "",
+        createAt: "",
+        updatedAt: "",
+      },
     };
   }
 
   handleChange = (e) => {
     this.setState({
       ...this.state,
-      [e.target.name]: e.target.value,
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
+  handleSubmit = ({ id, title, fecha }) => {
+    console.log("Guardando", { id, title, fecha });
+  };
+
   render() {
+    const { form } = this.state;
+
     console.log(this.state);
     return (
       <div>
         <h2>Notas</h2>
-        <Formulario onChange={this.handleChange} fecha={this.state.fecha} />
+        <Formulario
+          onChange={this.handleChange}
+          {...form}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }
