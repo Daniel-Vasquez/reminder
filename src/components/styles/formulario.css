@@ -1,0 +1,44 @@
+.containerForm {
+  text-align: center;
+  width: 90%;
+  background-color: white;
+  border: 1px solid #dfe1e5;
+  border-radius: 5px;
+}
+
+.containerForm-title,
+.containerForm-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+}
+
+.containerForm-title__text,
+.containerForm-date__text {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.containerForm-button {
+  width: 80px;
+  margin: 5px 0;
+}
+
+.containerForm-title__input,
+.containerForm-date__input {
+  outline: none;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+}
+
+.containerForm-button {
+  padding: 5px;
+  border: 2px solid #55555570;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 10px 0;
+}

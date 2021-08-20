@@ -1,6 +1,10 @@
 import React from "react";
 import Formulario from "./components/formulario";
 import randomId from "./utils/randomId";
+import backArrow from "./images/hacia-atras.png";
+import home from "./images/home.png";
+import options from "./images/options.png";
+import basura from "./images/basura.png";
 import "./App.css";
 
 class App extends React.Component {
@@ -13,7 +17,18 @@ class App extends React.Component {
         title: "",
         fecha: "",
       },
-      notas: [{ id: "123", title: "Salir", fecha: "2021-12-27" }],
+      notas: [
+        {
+          id: "123",
+          title: "Salir",
+          fecha: "2021-08-21",
+        },
+        {
+          id: "12",
+          title: "Llegar",
+          fecha: "2021-08-21",
+        },
+      ],
     };
   }
 
@@ -48,39 +63,45 @@ class App extends React.Component {
   render() {
     const { form, notas } = this.state;
 
-    console.log(this.state);
     return (
-      <div>
-        <h2>Notas</h2>
-        <Formulario
-          onChange={this.handleChange}
-          {...form}
-          handleSubmit={this.handleSubmit}
-        />
-        {notas.map((nota) => {
-          return (
-            <div
-              key={nota.id}
-              style={{
-                border: "1px solid red",
-                width: "160px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <p>{nota.title}</p>
-                <p>{nota.fecha}</p>
-              </div>
-              <div>
-                <button onClick={() => this.handleDelete(nota.id)}>
-                  Borar
-                </button>
-              </div>
+      <React.Fragment>
+        <div className="containerApp">
+          <div className="containerApp-container">
+            <h2>Notas</h2>
+            <Formulario
+              onChange={this.handleChange}
+              {...form}
+              handleSubmit={this.handleSubmit}
+            />
+            <div className="containerNotas">
+              {notas.map((nota) => {
+                return (
+                  <div className="containerNotas-nota" key={nota.id}>
+                    <div className="containerNotas-nota__details">
+                      <p>{nota.title}</p>
+                      <p>{nota.fecha}</p>
+                    </div>
+                    <div className="containerNotas-nota__button">
+                      <button
+                        className="containerNotas-botton"
+                        onClick={() => this.handleDelete(nota.id)}
+                      >
+                        <img src={basura} alt="Borrar nota" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          </div>
+          <div className="containerApp-options">
+            <img className="" src={backArrow} alt="Regresar"></img>
+            <img className="" src={home} alt="Regresar"></img>
+            <img className="" src={options} alt="Regresar"></img>
+          </div>
+        </div>
+        <div className="containerApp-shade"></div>
+      </React.Fragment>
     );
   }
 }

@@ -1,20 +1,25 @@
 import React from "react";
+import "./styles/formulario.css";
 
 class Formulario extends React.Component {
   render() {
     const { id, title, fecha, handleSubmit } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <form
+          className="containerForm"
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit({ id, title, fecha });
           }}
         >
-          <div>
-            <label>Title</label>
+          <div className="containerForm-title">
+            <label className="containerForm-title__text">
+              Título del evento
+            </label>
             <input
+              className="containerForm-title__input"
               type="text"
               name="title"
               value={title}
@@ -22,9 +27,10 @@ class Formulario extends React.Component {
             />
           </div>
 
-          <div>
-            <label>Fecha</label>
+          <div className="containerForm-date">
+            <label className="containerForm-date__text">Fecha</label>
             <input
+              className="containerForm-date__input"
               type="date"
               name="fecha"
               value={fecha}
@@ -32,11 +38,15 @@ class Formulario extends React.Component {
             />
           </div>
 
-          <button type="submit" disabled={!Boolean(title && fecha)}>
+          <button
+            className="containerForm-button"
+            type="submit"
+            disabled={!Boolean(title && fecha)}
+          >
             Guardar
           </button>
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 }
