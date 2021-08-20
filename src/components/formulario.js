@@ -32,7 +32,9 @@ class Formulario extends React.Component {
             />
           </div>
 
-          <button type="submit">Guardar</button>
+          <button type="submit" disabled={!Boolean(title && fecha)}>
+            Guardar
+          </button>
         </form>
       </div>
     );

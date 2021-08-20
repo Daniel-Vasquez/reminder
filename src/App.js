@@ -1,5 +1,6 @@
 import React from "react";
 import Formulario from "./components/formulario";
+import randomId from "./utils/randomId";
 import "./App.css";
 
 class App extends React.Component {
@@ -11,15 +12,13 @@ class App extends React.Component {
         id: "",
         title: "",
         fecha: "",
-        createAt: "",
-        updatedAt: "",
       },
+      notas: [{ id: "123", title: "Salir", fecha: "2021-12-27" }],
     };
   }
 
   handleChange = (e) => {
     this.setState({
-      ...this.state,
       form: {
         ...this.state.form,
         [e.target.name]: e.target.value,
@@ -28,11 +27,26 @@ class App extends React.Component {
   };
 
   handleSubmit = ({ id, title, fecha }) => {
-    console.log("Guardando", { id, title, fecha });
+    const newNotas = [...this.state.notas, { id: randomId(), title, fecha }];
+
+    this.setState({
+      notas: newNotas,
+      form: {
+        id: "",
+        title: "",
+        fecha: "",
+      },
+    });
+  };
+
+  handleDelete = (id) => {
+    const newNotas = this.state.notas.filter((nota) => nota.id !== id);
+
+    this.setState({ notas: newNotas });
   };
 
   render() {
-    const { form } = this.state;
+    const { form, notas } = this.state;
 
     console.log(this.state);
     return (
@@ -43,6 +57,29 @@ class App extends React.Component {
           {...form}
           handleSubmit={this.handleSubmit}
         />
+        {notas.map((nota) => {
+          return (
+            <div
+              key={nota.id}
+              style={{
+                border: "1px solid red",
+                width: "160px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <p>{nota.title}</p>
+                <p>{nota.fecha}</p>
+              </div>
+              <div>
+                <button onClick={() => this.handleDelete(nota.id)}>
+                  Borar
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
