@@ -17,18 +17,7 @@ class App extends React.Component {
         title: "",
         fecha: "",
       },
-      notas: [
-        {
-          id: "123",
-          title: "Salir",
-          fecha: "2021-08-21",
-        },
-        {
-          id: "12",
-          title: "Llegar",
-          fecha: "2021-08-21",
-        },
-      ],
+      notas: [],
     };
   }
 
