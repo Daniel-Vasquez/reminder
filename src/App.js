@@ -56,7 +56,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="containerApp">
           <div className="containerApp-container">
-            <h2>Notas</h2>
+            <h2>Recordatorio</h2>
             <Formulario
               onChange={this.handleChange}
               {...form}
